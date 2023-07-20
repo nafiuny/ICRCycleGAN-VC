@@ -96,7 +96,7 @@ python -W ignore::UserWarning -m icr_cyclegan_vc.train \
     --speaker_B_id <speaker_B_id> \
     --epochs_per_save 100 \
     --epochs_per_plot 10 \
-    --num_epochs 6172 \
+    --num_epochs 100000 \
     --batch_size 1 \
     --lr 5e-4 \
     --decay_after 1e4 \
