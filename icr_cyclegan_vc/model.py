@@ -227,7 +227,7 @@ class Generator(nn.Module):
         x = torch.stack((x*mask, mask), dim=1)
         conv1 = self.conv1(x) * torch.sigmoid(self.conv1_gates(x))  # GLU
         
-		# Downsampling
+	# Downsampling
         downsample1 = self.downSample1(conv1)
         downsample2 = self.downSample2(downsample1)
         
@@ -241,7 +241,7 @@ class Generator(nn.Module):
         conv2dto1d_layer = self.conv2dto1dLayer_tfan(conv2dto1d_layer)
                 
         # Inception-ResNet
-		x1 = self.Inception1(conv2dto1d_layer)
+	x1 = self.Inception1(conv2dto1d_layer)
         x1 = self.Inception2(x1)
         x1 = self.Inception3(x1)
         x1 = self.Inception4(x1)
