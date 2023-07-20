@@ -20,7 +20,7 @@ from logger.train_logger import TrainLogger
 from saver.model_saver import ModelSaver
 
 
-class MaskCycleGANVCTraining(object):
+class ICRCycleGANVCTraining(object):
     """Trainer for ICRCycleGAN-VC
     """
 
@@ -124,18 +124,12 @@ class MaskCycleGANVCTraining(object):
 
         # Load from previous ckpt
         if args.continue_train:
-            self.saver.load_model(
-                self.generator_A2B, "generator_A2B", None, self.generator_optimizer)
-            self.saver.load_model(self.generator_B2A,
-                                  "generator_B2A", None, None)
-            self.saver.load_model(self.discriminator_A,
-                                  "discriminator_A", None, self.discriminator_optimizer)
-            self.saver.load_model(self.discriminator_B,
-                                  "discriminator_B", None, None)
-            self.saver.load_model(self.discriminator_A2,
-                                  "discriminator_A2", None, None)
-            self.saver.load_model(self.discriminator_B2,
-                                  "discriminator_B2", None, None)
+            self.saver.load_model(self.generator_A2B, "generator_A2B", None, self.generator_optimizer)
+            self.saver.load_model(self.generator_B2A,"generator_B2A", None, None)
+            self.saver.load_model(self.discriminator_A,"discriminator_A", None, self.discriminator_optimizer)
+            self.saver.load_model(self.discriminator_B,"discriminator_B", None, None)
+            self.saver.load_model(self.discriminator_A2,"discriminator_A2", None, None)
+            self.saver.load_model(self.discriminator_B2,"discriminator_B2", None, None)
 
     def adjust_lr_rate(self, optimizer, generator):
         """Decays learning rate.
@@ -205,10 +199,8 @@ class MaskCycleGANVCTraining(object):
                     cycle_A = self.generator_B2A(fake_B, torch.ones_like(fake_B))
                     fake_A = self.generator_B2A(real_B, mask_B)
                     cycle_B = self.generator_A2B(fake_A, torch.ones_like(fake_A))
-                    identity_A = self.generator_B2A(
-                        real_A, torch.ones_like(real_A))
-                    identity_B = self.generator_A2B(
-                        real_B, torch.ones_like(real_B))
+                    identity_A = self.generator_B2A(real_A, torch.ones_like(real_A))
+                    identity_B = self.generator_A2B(real_B, torch.ones_like(real_B))
                     d_fake_A = self.discriminator_A(fake_A)
                     d_fake_B = self.discriminator_B(fake_B)
 
@@ -255,16 +247,14 @@ class MaskCycleGANVCTraining(object):
                     d_fake_A = self.discriminator_A(generated_A)
 
                     # For Two Step Adverserial Loss A->B
-                    cycled_B = self.generator_A2B(
-                        generated_A, torch.ones_like(generated_A))
+                    cycled_B = self.generator_A2B(generated_A, torch.ones_like(generated_A))
                     d_cycled_B = self.discriminator_B2(cycled_B)
 
                     generated_B = self.generator_A2B(real_A, mask_A)
                     d_fake_B = self.discriminator_B(generated_B)
 
                     # For Two Step Adverserial Loss B->A
-                    cycled_A = self.generator_B2A(
-                        generated_B, torch.ones_like(generated_B))
+                    cycled_A = self.generator_B2A(generated_B, torch.ones_like(generated_B))
                     d_cycled_A = self.discriminator_A2(cycled_A)
 
                     # Loss Functions
@@ -294,16 +284,13 @@ class MaskCycleGANVCTraining(object):
                     self.discriminator_optimizer.step()
 
                 # Log Iteration
-                self.logger.log_iter(
-                    loss_dict={'g_loss': g_loss.item(), 'd_loss': d_loss.item()})
+                self.logger.log_iter(loss_dict={'g_loss': g_loss.item(), 'd_loss': d_loss.item()})
                 self.logger.end_iter()
 
                 # Adjust learning rates
                 if self.logger.global_step > self.decay_after:
-                    self.adjust_lr_rate(
-                        self.generator_optimizer, generator=True)
-                    self.adjust_lr_rate(
-                        self.generator_optimizer, generator=False)
+                    self.adjust_lr_rate(self.generator_optimizer, generator=True)
+                    self.adjust_lr_rate(self.generator_optimizer, generator=False)
 
                 # Set identity loss to zero if larger than given value
                 if self.logger.global_step > self.stop_identity_after:
@@ -314,16 +301,11 @@ class MaskCycleGANVCTraining(object):
                 with torch.no_grad():
 
                     # Convert Mel-spectrograms from validation set to waveform and log to tensorboard
-                    real_mel_full_A, real_mel_full_B = next(
-                        iter(self.validation_dataloader))
-                    real_mel_full_A = real_mel_full_A.to(
-                        self.device, dtype=torch.float)
-                    real_mel_full_B = real_mel_full_B.to(
-                        self.device, dtype=torch.float)
-                    fake_mel_full_B = self.generator_A2B(
-                        real_mel_full_A, torch.ones_like(real_mel_full_A))
-                    fake_mel_full_A = self.generator_B2A(
-                        real_mel_full_B, torch.ones_like(real_mel_full_B))
+                    real_mel_full_A, real_mel_full_B = next(iter(self.validation_dataloader))
+                    real_mel_full_A = real_mel_full_A.to(self.device, dtype=torch.float)
+                    real_mel_full_B = real_mel_full_B.to(self.device, dtype=torch.float)
+                    fake_mel_full_B = self.generator_A2B(real_mel_full_A, torch.ones_like(real_mel_full_A))
+                    fake_mel_full_A = self.generator_B2A(real_mel_full_B, torch.ones_like(real_mel_full_B))
                     real_wav_full_A = decode_melspectrogram(self.vocoder, real_mel_full_A[0].detach(
                     ).cpu(), self.dataset_A_mean, self.dataset_A_std).cpu()
                     fake_wav_full_A = decode_melspectrogram(self.vocoder, fake_mel_full_A[0].detach(
@@ -332,14 +314,10 @@ class MaskCycleGANVCTraining(object):
                     ).cpu(), self.dataset_B_mean, self.dataset_B_std).cpu()
                     fake_wav_full_B = decode_melspectrogram(self.vocoder, fake_mel_full_B[0].detach(
                     ).cpu(), self.dataset_B_mean, self.dataset_B_std).cpu()
-                    self.logger.log_audio(
-                        real_wav_full_A.T, "real_speaker_A_audio", self.sample_rate)
-                    self.logger.log_audio(
-                        fake_wav_full_A.T, "fake_speaker_A_audio", self.sample_rate)
-                    self.logger.log_audio(
-                        real_wav_full_B.T, "real_speaker_B_audio", self.sample_rate)
-                    self.logger.log_audio(
-                        fake_wav_full_B.T, "fake_speaker_B_audio", self.sample_rate)
+                    self.logger.log_audio(real_wav_full_A.T, "real_speaker_A_audio", self.sample_rate)
+                    self.logger.log_audio(fake_wav_full_A.T, "fake_speaker_A_audio", self.sample_rate)
+                    self.logger.log_audio(real_wav_full_B.T, "real_speaker_B_audio", self.sample_rate)
+                    self.logger.log_audio(fake_wav_full_B.T, "fake_speaker_B_audio", self.sample_rate)
 
             # Save each model checkpoint
             if self.logger.epoch % self.epochs_per_save == 0:
@@ -362,5 +340,5 @@ class MaskCycleGANVCTraining(object):
 if __name__ == "__main__":
     parser = CycleGANTrainArgParser()
     args = parser.parse_args()
-    cycleGAN = MaskCycleGANVCTraining(args)
+    cycleGAN = ICRCycleGANVCTraining(args)
     cycleGAN.train()
