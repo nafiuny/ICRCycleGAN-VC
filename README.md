@@ -98,7 +98,8 @@ python -W ignore::UserWarning -m icr_cyclegan_vc.train \
     --epochs_per_plot 10 \
     --num_epochs 100000 \
     --batch_size 1 \
-    --lr 5e-4 \
+    --generator_lr 2e-4 \
+    --discriminator_lr 1e-4 \
     --decay_after 1e4 \
     --sample_rate 22050 \
     --num_frames 64 \
@@ -125,7 +126,7 @@ python -W ignore::UserWarning -m icr_cyclegan_vc.test \
     --gpu_ids 0 \
     --speaker_A_id VCC2SF3 \
     --speaker_B_id VCC2TF1 \
-    --ckpt_dir /data1/cycleGAN_VC3/icr_cyclegan_vc_VCC2SF3_VCC2TF1/ckpts \
+    --ckpt_dir results/mask_cyclegan_vc_VCC2SF3_VCC2SF1/ckpts \
     --load_epoch 500 \
     --model_name generator_A2B \
 ```
