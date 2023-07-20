@@ -32,7 +32,7 @@ ICRCycleGAN-VC is the latest method for non-parallel voice conversion using Cycl
 Clone the repository.
 
 ```
-git clone git@github.com:nafiuny/ICRCycleGAN-VC.git
+git clone https://github.com/nafiuny/ICRCycleGAN-VC.git
 cd ICRCycleGAN-VC
 ```
 
