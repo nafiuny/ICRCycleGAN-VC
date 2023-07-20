@@ -1,8 +1,5 @@
 # ICRCycleGAN-VC
-Official **PyTorch** implementation of  Afiuny et al. [**ICR CycleGAN-VC**] (2023) for non-parallel voice conversion.
-
-ICRCycleGAN-VC is the latest method for non-parallel voice conversion using CycleGAN. It is implemented using the Inception module. It uses the melGAN vocoder to convert the waveform. It has removed the second adversarial loss in generator. It represents significant improvements over previous models such as CycleGAN-VC (2018), CycleGAN-VC2 (2019), CycleGAN-VC3 (2020) and MaskCycleGAN-VC(2021) also StyleFormerGAN-VC(2022).
-
+Voice conversion or VC is a technique in which the voice of the source speaker is transformed into the voice of the target speaker while preserving the linguistic content, as if the target speaker has spoken those sentences. However, until now, **Persian VC** models have not been able to score as much as English speech due to factors such as speech style and the number of letters and words in each frame. In some cases, converted speech content can be difficult to understand. To address these challenges, this article proposes a new method called **ICRCycleGAN-VC**, which pays close attention to speech structure to produce a natural, high-quality voice that is similar to the target speaker in Persian speech conversion while preserving the speech content. This text-independent method is based on cycle adversarial generative networks and uses the Inception-ResNet module within a Cycle structure for feature extraction through different filters in parallel. This layering approach indirectly contributes to improved network performance. The proposed method has been evaluated through various tests, and the results demonstrate that it outperforms previous models in terms of similarity to the target speaker, the naturalness of the voice, and the preservation of speech content, both in converting Persian and English speech. 
 
 <p align="center">
 <br><br><br><br>
