@@ -5,6 +5,7 @@ ICRCycleGAN-VC is the latest method for non-parallel voice conversion using Cycl
 
 
 <p align="center">
+<br><br><br><br>
 <img src="imgs/Generator-ICRCycleGAN.png" width="800">
 <br>
 <b>Figure1: ICRCycleGAN-VC Generator Architecture</b>
@@ -22,7 +23,7 @@ ICRCycleGAN-VC is the latest method for non-parallel voice conversion using Cycl
 <img src="imgs/Discriminator_ICRCycleGAN.png" width="500">
 <br>
 <b>Figure3: ICRCycleGAN-VC Discriminator Architecture</b>
-<br><br><br><br>
+<br>
 </p>
 
 
