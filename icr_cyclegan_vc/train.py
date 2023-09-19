@@ -91,6 +91,7 @@ class ICRCycleGANVCTraining(object):
                                             n_frames=args.num_frames_validation,
                                             max_mask_len=args.max_mask_len,
                                             valid=True)
+        
         self.validation_dataloader = torch.utils.data.DataLoader(dataset=self.validation_dataset,
                                                                  batch_size=1,
                                                                  shuffle=False,
