@@ -21,7 +21,6 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 
-
 def decode_melspectrogram(vocoder, melspectrogram, mel_mean, mel_std):
     """Decoded a Mel-spectrogram to waveform using a vocoder.
 
