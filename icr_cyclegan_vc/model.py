@@ -20,7 +20,6 @@ class GLU(nn.Module):
     def forward(self, x):
         return x * torch.sigmoid(x)
 
-
 class PixelShuffle(nn.Module):
     """Custom implementation pf Pixel Shuffle since PyTorch's PixelShuffle
     requires a 4D input (we have 3D inputs).
