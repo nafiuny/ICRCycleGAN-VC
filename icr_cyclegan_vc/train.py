@@ -19,7 +19,6 @@ from icr_cyclegan_vc.utils import decode_melspectrogram, get_mel_spectrogram_fig
 from logger.train_logger import TrainLogger
 from saver.model_saver import ModelSaver
 
-
 class ICRCycleGANVCTraining(object):
     """Trainer for ICRCycleGAN-VC
     """
