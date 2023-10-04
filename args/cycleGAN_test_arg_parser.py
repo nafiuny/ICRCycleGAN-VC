@@ -3,6 +3,7 @@ Arguments for MaskCycleGAN-VC testing.
 Inherits BaseArgParser.
 """
 
+
 from args.base_arg_parser import BaseArgParser
 
 class CycleGANTestArgParser(BaseArgParser):
