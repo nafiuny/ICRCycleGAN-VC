@@ -7,7 +7,6 @@ from torch.utils.data.dataset import Dataset
 import torch
 import numpy as np
 
-
 class VCDataset(Dataset):
     def __init__(self, datasetA, datasetB=None, n_frames=64, max_mask_len=25, valid=False):
         self.datasetA = datasetA
