@@ -144,7 +144,7 @@ python -W ignore::UserWarning -m icr_cyclegan_vc.test \
     --gpu_ids 0 \
     --speaker_A_id VCC2SF2 \
     --speaker_B_id VCC2TF1 \
-    --ckpt_dir results/mask_cyclegan_vc_VCC2SF2_VCC2SF1/ckpts \
+    --ckpt_dir results/icr_cyclegan_vc_VCC2SF2_VCC2SF1/ckpts \
     --load_epoch 500 \
     --model_name generator_A2B \
 ```
