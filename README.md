@@ -14,7 +14,7 @@ Due to the results and poor performance of voice conversion models in Persian VC
 </p>
 
 <p align="center">
-<img src="imgs/Inception-ResNet.png" width="500">
+<img src="imgs/Inception-ResNet-ICRCycleGAN.png" width="500">
 <br>
 <b>Figure2: Inception-ResNet Blocks in Generator</b>
 <br><br><br><br>
