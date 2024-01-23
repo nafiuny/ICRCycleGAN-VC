@@ -1,13 +1,13 @@
-# Sample training script to convert between VCC2SF2 and VCC2TF1
+# Sample training script to convert between VCC2SF2 and VCC2SF1
 # Continues training from epoch 500
 
 python -W ignore::UserWarning -m icr_cyclegan_vc.train \
-    --name icr_cyclegan_vc_VCC2SF2_VCC2TF1 \
+    --name icr_cyclegan_vc_VCC2SF2_VCC2SF1 \
     --seed 0 \
     --save_dir results/ \
     --preprocessed_data_dir vcc2018_preprocessed/vcc2018_training \
     --speaker_A_id VCC2SF2 \
-    --speaker_B_id VCC2TF1 \
+    --speaker_B_id VCC2SF1 \
     --epochs_per_save 100 \
     --epochs_per_plot 10 \
     --num_epochs 100000 \
