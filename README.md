@@ -138,7 +138,7 @@ Test your trained ICRCycleGAN-VC by converting between `<speaker_A_id>` and `<sp
 
 ```
 python -W ignore::UserWarning -m icr_cyclegan_vc.test \
-    --name icr_cyclegan_vc_VCC2SF2_VCC2TF1 \
+    --name icr_cyclegan_vc_VCC2SF2_VCC2SF1 \
     --save_dir results/ \
     --preprocessed_data_dir vcc2018_preprocessed/vcc2018_evaluation \
     --gpu_ids 0 \
