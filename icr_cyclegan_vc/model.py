@@ -47,42 +47,33 @@ class BasicConv2d(nn.Module):
     def forward(self, x):
         x = self.conv(x)
         x = self.bn(x)
-        
-	return F.relu(x, inplace=True)
+        return F.relu(x, inplace=True)
 
 
 
 
 class Inception(nn.Module):
-    	"""Inception-ResNet Blocks  of the Generator
-	"""
-	
-	def __init__(self):
+    """Inception-ResNet Blocks  of the Generator
+    """
+    def __init__(self):
         super(Inception, self).__init__()
-
-        self.branch1x1 = BasicConv2d(256, 256, kernel_size=1, padding=0)
-
         
+        self.branch1x1 = BasicConv2d(256, 256, kernel_size=1, padding=0)
         self.branch3x3_1 = BasicConv2d(256, 256, kernel_size=1, padding=1)
         self.branch3x3_2 = BasicConv2d(256, 256, kernel_size=3, padding=0)
-
         self.branch5x5_1 = BasicConv2d(256, 256, kernel_size=1, padding=1)
         self.branch5x5_2 = BasicConv2d(256, 256, kernel_size=5, padding=1)
-        
         self.branch_pool = BasicConv2d(256, 256, kernel_size=1, padding=0)
-
+        
     def forward(self, x):
         branch1x1 = self.branch1x1(x)
-        
-	branch3x3 = self.branch3x3_1(x)
+        branch3x3 = self.branch3x3_1(x)
         branch3x3 = self.branch3x3_2(branch3x3)
-        
-	branch5x5 = self.branch5x5_1(x)
+        branch5x5 = self.branch5x5_1(x)
         branch5x5 = self.branch5x5_2(branch5x5)
-                
         branch_pool = F.max_pool2d(x, kernel_size=3, stride=1, padding=1)
         branch_pool = self.branch_pool(branch_pool)
-        
+
         outputs = branch1x1 + branch3x3 + branch5x5 + branch_pool
         return outputs + x
         
@@ -240,7 +231,7 @@ class Generator(nn.Module):
         conv2dto1d_layer = self.conv2dto1dLayer_tfan(conv2dto1d_layer)
                 
         # Inception-ResNet
-	x1 = self.Inception1(conv2dto1d_layer)
+        x1 = self.Inception1(conv2dto1d_layer)
         x1 = self.Inception2(x1)
         x1 = self.Inception3(x1)
         x1 = self.Inception4(x1)
