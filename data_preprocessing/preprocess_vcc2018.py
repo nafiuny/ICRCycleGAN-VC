@@ -26,7 +26,8 @@ SAMPLING_RATE = 22050  # Fixed sampling rate
 def normalize_mel(wavspath):
     wav_files = glob.glob(os.path.join(
         wavspath, '**', '*.wav'), recursive=True)  # source_path
-    vocoder = torch.hub.load('descriptinc/melgan-neurips', 'load_melgan')
+    # vocoder = torch.hub.load('descriptinc/melgan-neurips', 'load_melgan')
+    vocoder = torch.hub.load('melgan-neurips', 'load_melgan', source='local')
 
     mel_list = list()
     for wavpath in tqdm(wav_files, desc='Preprocess wav to mel'):
