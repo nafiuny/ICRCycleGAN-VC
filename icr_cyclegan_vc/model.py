@@ -48,13 +48,13 @@ class BasicConv2d(nn.Module):
         x = self.conv(x)
         x = self.bn(x)
         
-		return F.relu(x, inplace=True)
+	return F.relu(x, inplace=True)
 
 
 
 
 class Inception(nn.Module):
-    """Inception-ResNet Blocks  of the Generator
+    	"""Inception-ResNet Blocks  of the Generator
 	"""
 	
 	def __init__(self):
@@ -74,10 +74,10 @@ class Inception(nn.Module):
     def forward(self, x):
         branch1x1 = self.branch1x1(x)
         
-		branch3x3 = self.branch3x3_1(x)
+	branch3x3 = self.branch3x3_1(x)
         branch3x3 = self.branch3x3_2(branch3x3)
         
-		branch5x5 = self.branch5x5_1(x)
+	branch5x5 = self.branch5x5_1(x)
         branch5x5 = self.branch5x5_2(branch5x5)
                 
         branch_pool = F.max_pool2d(x, kernel_size=3, stride=1, padding=1)
