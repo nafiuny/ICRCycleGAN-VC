@@ -1,7 +1,7 @@
 # ICRCycleGAN-VC
 <p align="justify">
 
-This is the official <strong>ICRCycleGAN-VC</strong> implementation repository with PyTorch.<br/><br/>
+This is the official <strong><a href="https://doi.org/10.1186/s13636-025-00422-5">ICRCycleGAN-VC</a></strong> implementation repository with PyTorch.<br/><br/>
 
 Due to the results and poor performance of voice conversion models in Persian VC, we proposed <strong>ICRCycleGAN-VC</strong>, which is implemented with careful attention to the structure of Persian speech. This is the last method for non-parallel audio conversion using CycleGAN-VC. This context-independent method is based on cycle adversarial generative networks and uses the Inception-ResNet module in the cyclic structure to extract features through different filters in parallel. The depth of this method is less than other CycleGAN-VC methods, especially MaskCycleGAN-VC. The performance of this method in <strong>Persian and English VC</strong> is excellent compared to the previous methods.
 
