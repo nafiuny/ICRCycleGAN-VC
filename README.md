@@ -7,22 +7,23 @@ Due to the results and poor performance of voice conversion models in Persian VC
 
 </p>
 <p align="center">
+<img src="img/ICRCycleGAN-VC.png" width="800">    
 <br><br><br><br>
-<img src="imgs/Generator-ICRCycleGAN.png" width="800">
+<img src="img/Generator-ICRCycleGAN.png" width="800">
 <br>
 <b>Figure1: ICRCycleGAN-VC Generator Architecture</b>
 <br><br><br><br>
 </p>
 
 <p align="center">
-<img src="imgs/Inception-ResNet-ICRCycleGAN.png" width="500">
+<img src="img/Inception-ResNet-ICRCycleGAN.png" width="500">
 <br>
 <b>Figure2: Inception-ResNet Blocks in Generator</b>
 <br><br><br><br>
 </p>
 
 <p align="center">
-<img src="imgs/Discriminator_ICRCycleGAN.png" width="500">
+<img src="img/Discriminator_ICRCycleGAN.png" width="500">
 <br>
 <b>Figure3: ICRCycleGAN-VC Discriminator Architecture</b>
 <br>
